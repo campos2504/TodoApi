@@ -3,12 +3,10 @@ using TodoApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Add DI- Add Services
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline. Use Method
 app.MapGet("/todoitems", async (TodoDb db) =>
     await db.TodoItems.ToListAsync());
 
